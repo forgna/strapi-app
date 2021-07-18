@@ -18,9 +18,7 @@ export default function CareerPage({ career }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/careers?_limit=5`
-  );
+  const res = await fetch(`${process.env.API_URL}/careers?_limit=5`);
   const careers = await res.json();
 
   const paths = careers.map((career) => ({
@@ -31,9 +29,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/careers?slug=${params.slug}`
-  );
+  const res = await fetch(`${process.env.API_URL}/careers?slug=${params.slug}`);
   const careers = await res.json();
 
   return { props: { career: careers[0] }, revalidate: 10 };

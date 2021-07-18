@@ -28,9 +28,7 @@ export default function RestaurantListPage({ restaurants }) {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/restaurants?_limit=5`
-  );
+  const res = await fetch(`${process.env.API_URL}/restaurants?_limit=5`);
   const restaurants = await res.json();
 
   if (!restaurants) {

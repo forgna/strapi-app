@@ -21,9 +21,7 @@ export default function RestaurantPage({ restaurant }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/restaurants?_limit=5`
-  );
+  const res = await fetch(`${process.env.API_URL}/restaurants?_limit=5`);
   const restaurants = await res.json();
 
   // Get the paths we want to pre-render based on posts
@@ -37,9 +35,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/restaurants/${params.id}`
-  );
+  const res = await fetch(`${process.env.API_URL}/restaurants/${params.id}`);
   const restaurant = await res.json();
 
   return { props: { restaurant }, revalidate: 10 };

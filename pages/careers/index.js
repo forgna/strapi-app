@@ -20,9 +20,7 @@ export default function CareerListPage({ careers }) {
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/careers?_limit=5`
-  );
+  const res = await fetch(`${process.env.API_URL}/careers?_limit=5`);
   const careers = await res.json();
 
   if (!careers) {
