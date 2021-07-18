@@ -1,5 +1,5 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import Head from "next/head";
+import Link from "next/link";
 
 export default function RestaurantListPage({ restaurants }) {
   return (
@@ -12,7 +12,7 @@ export default function RestaurantListPage({ restaurants }) {
 
       <main>
         <ul>
-          {restaurants.map(restaurant => (
+          {restaurants.map((restaurant) => (
             <li key={restaurant.id}>
               <Link href={`/restaurants/${restaurant.id}`}>
                 <a>{restaurant.name}</a>
@@ -22,24 +22,24 @@ export default function RestaurantListPage({ restaurants }) {
         </ul>
       </main>
 
-      <footer>
-        
-      </footer>
+      <footer></footer>
     </div>
-  )
+  );
 }
 
 export async function getStaticProps(context) {
-  const res = await fetch(`${process.env.API_URL}/restaurants?_limit=5`)
-  const restaurants = await res.json()
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/restaurants?_limit=5`
+  );
+  const restaurants = await res.json();
 
   if (!restaurants) {
     return {
       notFound: true,
-    }
+    };
   }
 
   return {
     props: { restaurants }, // will be passed to the page component as props
-  }
+  };
 }
